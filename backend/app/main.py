@@ -35,3 +35,7 @@ def root():
         "message": "API de Control de Asistencia Docente funcionando correctamente",
         "version": APP_VERSION,
     }
+
+from app.routes.asistencia import router as asistencia_router
+
+app.include_router(asistencia_router)

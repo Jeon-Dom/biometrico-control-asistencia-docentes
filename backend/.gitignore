@@ -16,3 +16,9 @@ __pycache__/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Datos reales de marcaciones
+data/marcaciones.csv
+
+# Datos locales de marcaciones
+app/data/
