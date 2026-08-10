@@ -37,5 +37,7 @@ def root():
     }
 
 from app.routes.asistencia import router as asistencia_router
+from app.routes.ccuv import router as ccuv_router
 
 app.include_router(asistencia_router)
+app.include_router(ccuv_router)
