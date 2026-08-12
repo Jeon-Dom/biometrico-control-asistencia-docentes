@@ -7,7 +7,11 @@ from app.core.config import (
     DEBUG,
     FRONTEND_URL,
 )
+from app.core.database import Base, engine
+from app.api.endpoints import docentes
 
+# Crea las tablas en la base de datos si no existen
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title=APP_NAME,
@@ -15,7 +19,6 @@ app = FastAPI(
     version=APP_VERSION,
     debug=DEBUG,
 )
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -28,6 +31,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(docentes.router, prefix="/api/docentes", tags=["Docentes"])
 
 @app.get("/")
 def root():
