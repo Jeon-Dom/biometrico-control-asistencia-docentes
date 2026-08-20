@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 APP_NAME = os.getenv(
     "APP_NAME",
     "Sistema de Control de Asistencia Docente"
@@ -25,5 +24,6 @@ FRONTEND_URL = os.getenv(
 )
 
 DATABASE_URL = os.getenv(
-    "DATABASE_URL"
+    "DATABASE_URL",
+    "postgresql://postgres:postgres@localhost:5432/asistencia_docentes"
 )
