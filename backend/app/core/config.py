@@ -22,3 +22,8 @@ FRONTEND_URL = os.getenv(
     "FRONTEND_URL",
     "http://localhost:4200"
 )
+
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql://postgres:postgres@localhost:5432/asistencia_docentes"
+)
