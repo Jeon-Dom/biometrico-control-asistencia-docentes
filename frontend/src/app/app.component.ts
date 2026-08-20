@@ -12,13 +12,13 @@ import { CommonModule } from "@angular/common";
         <img src="assets/logo.png" alt="Logo Yavirac" style="height: 60px;">
         <div>
           <h1 style="color: #002d62; margin: 0; font-size: 24px;">Dashboard de Asistencia</h1>
-          <p style="color: #555; margin: 0; font-weight: 600;">Instituto Superior Tecnológico Yavirac</p>
+          <p style="color: #555; margin: 0; font-weight: 600;">Instituto Superior Tecnolï¿½gico Yavirac</p>
         </div>
       </header>
 
-      <!-- Información del Docente -->
+      <!-- Informaciï¿½n del Docente -->
       <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 25px;">
-        <h3 style="margin-top: 0; color: #002d62; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">Información del Docente</h3>
+        <h3 style="margin-top: 0; color: #002d62; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">Informaciï¿½n del Docente</h3>
         <p style="margin: 10px 0;"><strong>Nombre:</strong> Carlos Guerrero</p>
         <p style="margin: 10px 0;"><strong>CCUV:</strong> CCUV-849201</p>
       </div>
@@ -26,7 +26,7 @@ import { CommonModule } from "@angular/common";
       <!-- Tarjetas de Horas -->
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 25px;">
         <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-top: 4px solid #002d62;">
-          <h4 style="margin: 0; color: #666;">Horas del Día</h4>
+          <h4 style="margin: 0; color: #666;">Horas del Dï¿½a</h4>
           <p style="font-size: 26px; font-weight: bold; color: #002d62; margin: 10px 0 0 0;">6.5 hrs</p>
         </div>
         <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-top: 4px solid #2ecc71;">

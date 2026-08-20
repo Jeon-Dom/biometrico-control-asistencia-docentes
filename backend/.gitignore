@@ -1,0 +1,24 @@
+# Entorno virtual de Python
+venv/
+
+# Variables de entorno
+.env
+
+# Archivos generados por Python
+__pycache__/
+*.py[cod]
+
+# Caché de herramientas
+.pytest_cache/
+.mypy_cache/
+
+# Archivos del editor/sistema
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Datos reales de marcaciones
+data/marcaciones.csv
+
+# Datos locales de marcaciones
+app/data/
