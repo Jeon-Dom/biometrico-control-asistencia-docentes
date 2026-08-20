@@ -1,13 +1,14 @@
-from pydantic import BaseModel
-from typing import Optional
+from datetime import date, time, datetime
+
+from pydantic import BaseModel, ConfigDict
 
 
-class Asistencia(BaseModel):
-    id_empleado: str
-    nombres: str
-    apellidos: str
-    fecha: str
-    entrada: Optional[str] = None
-    salida: Optional[str] = None
-    entrada_hora_extra: Optional[str] = None
-    salida_hora_extra: Optional[str] = None
+class AsistenciaResponse(BaseModel):
+    id: int
+    ccuv: str
+    fecha: date
+    hora: time
+    tipo_marcacion: str
+    created_at: datetime | None = None
+
+    model_config = ConfigDict(from_attributes=True)

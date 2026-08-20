@@ -1,71 +1,45 @@
-import csv
-from pathlib import Path
+from datetime import date
 from typing import Optional
 
+from sqlalchemy.orm import Session
+from sqlalchemy import asc, desc
 
-CSV_PATH = (
-    Path(__file__).resolve().parent.parent
-    / "data"
-    / "marcaciones.csv"
-)
+from app.models.marcacion import Marcacion
 
 
-def obtener_asistencia(
-    id_empleado: str,
-    fecha: str
-) -> Optional[dict]:
-    """
-    Obtiene la asistencia de un empleado para una fecha
-    determinada a partir del archivo de marcaciones.
-    """
+def consultar_asistencia(
+    db: Session,
+    ccuv: Optional[str] = None,
+    fecha_desde: Optional[date] = None,
+    fecha_hasta: Optional[date] = None,
+    tipo_marcacion: Optional[str] = None,
+    orden: str = "desc",
+):
+    query = db.query(Marcacion)
 
-    marcaciones = []
+    if ccuv:
+        query = query.filter(Marcacion.ccuv == ccuv)
 
-    with open(
-        CSV_PATH,
-        mode="r",
-        encoding="utf-8-sig",
-        newline=""
-    ) as archivo:
-        lector = csv.DictReader(archivo)
+    if fecha_desde:
+        query = query.filter(Marcacion.fecha >= fecha_desde)
 
-        for fila in lector:
-            if (
-                fila["Id del Empleado"] == str(id_empleado)
-                and fila["Fecha"] == fecha
-            ):
-                marcaciones.append(fila)
+    if fecha_hasta:
+        query = query.filter(Marcacion.fecha <= fecha_hasta)
 
-    if not marcaciones:
-        return None
+    if tipo_marcacion:
+        query = query.filter(
+            Marcacion.tipo_marcacion == tipo_marcacion
+        )
 
-    primera = marcaciones[0]
+    if orden.lower() == "asc":
+        query = query.order_by(
+            asc(Marcacion.fecha),
+            asc(Marcacion.hora)
+        )
+    else:
+        query = query.order_by(
+            desc(Marcacion.fecha),
+            desc(Marcacion.hora)
+        )
 
-    asistencia = {
-        "id_empleado": primera["Id del Empleado"],
-        "nombres": primera["Nombres"],
-        "apellidos": primera["Apellidos"],
-        "fecha": primera["Fecha"],
-        "entrada": None,
-        "salida": None,
-        "entrada_hora_extra": None,
-        "salida_hora_extra": None,
-    }
-
-    for marcacion in marcaciones:
-        tipo = marcacion["Tipo de Marcación"]
-        hora = marcacion["Hora"]
-
-        if tipo == "Entrada":
-            asistencia["entrada"] = hora
-
-        elif tipo == "Salida":
-            asistencia["salida"] = hora
-
-        elif tipo == "Entrada Hora Extra":
-            asistencia["entrada_hora_extra"] = hora
-
-        elif tipo == "Salida Hora Extra":
-            asistencia["salida_hora_extra"] = hora
-
-    return asistencia
+    return query.all()
