@@ -305,7 +305,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get('http://localhost:8000/ccuv/1').subscribe({
+    this.http.get('http://localhost:8000/docentes/1').subscribe({
       next: (resDocente) => {
         this.docente = resDocente;
         this.http.get('http://localhost:8000/asistencia/1?fecha=2026-07-01').subscribe({
