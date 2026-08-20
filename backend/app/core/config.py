@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 APP_NAME = os.getenv(
     "APP_NAME",
     "Sistema de Control de Asistencia Docente"
@@ -21,4 +22,8 @@ DEBUG = os.getenv(
 FRONTEND_URL = os.getenv(
     "FRONTEND_URL",
     "http://localhost:4200"
+)
+
+DATABASE_URL = os.getenv(
+    "DATABASE_URL"
 )
