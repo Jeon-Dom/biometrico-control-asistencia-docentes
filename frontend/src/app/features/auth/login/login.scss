@@ -99,3 +99,31 @@ button[type="submit"] {
 
   color: white !important;
 }
+
+// AGREGADO: mensaje de error del backend (credenciales incorrectas, etc.)
+.login-error {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: .75rem 1rem;
+
+  background: #fdecea;
+
+  border-left: 4px solid #d32f2f;
+
+  border-radius: 8px;
+
+  color: #d32f2f;
+
+  font-size: .85rem;
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
