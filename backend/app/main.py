@@ -40,6 +40,8 @@ def root():
 
 from app.routes.asistencia import router as asistencia_router
 from app.routes.ccuv import router as ccuv_router
+from app.routes.docente import router as docente_router
 
 app.include_router(asistencia_router)
 app.include_router(ccuv_router)
+app.include_router(docente_router)
