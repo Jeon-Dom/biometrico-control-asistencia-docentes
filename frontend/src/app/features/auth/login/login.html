@@ -72,18 +72,19 @@
 
       </mat-form-field>
 
+      <!-- AGREGADO: mensaje de error del backend (credenciales incorrectas, etc.) -->
+      <!-- Solo aparece en pantalla si errorMessage tiene contenido -->
+      <div class="login-error" *ngIf="errorMessage">
+        <mat-icon>error_outline</mat-icon>
+        <span>{{ errorMessage }}</span>
+      </div>
+
       <button
         mat-raised-button
         color="primary"
         type="submit"
-        [disabled]="loginForm.invalid">
+        [disabled]="loginForm.invalid || loading">
 
-        Ingresar
-
-      </button>
-
-    </form>
-
-  </div>
-
-</div>
+        <!-- AGREGADO: texto del botón cambia mientras espera la respuesta del backend -->
+        <span *ngIf="!loading">Ingresar</span>
+        <span *ngIf="loading">Ingresando...</span>
