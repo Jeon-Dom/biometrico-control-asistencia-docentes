@@ -1,0 +1,129 @@
+.login-container {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+
+  background: #f5f7fa;
+}
+
+.login-card {
+
+  width: 100%;
+  max-width: 450px;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  padding: 2.5rem;
+
+  box-shadow:
+    0 10px 30px rgba(11, 35, 65, 0.08);
+
+  border-top: 5px solid #f28c28;
+}
+
+.login-header {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  margin-bottom: 2rem;
+}
+
+.logo-yavirac {
+
+  width: 130px;
+
+  height: auto;
+
+  margin-bottom: 1rem;
+
+  object-fit: contain;
+}
+
+.login-header h1 {
+
+  margin: 0;
+
+  color: #0b2341;
+
+  font-size: 1.8rem;
+
+  font-weight: 700;
+}
+
+.login-header p {
+
+  margin-top: .75rem;
+
+  color: #64748b;
+
+  font-size: .95rem;
+}
+
+form {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button[type="submit"] {
+
+  height: 48px;
+
+  font-size: .95rem;
+
+  font-weight: 600;
+}
+
+:host ::ng-deep .mat-mdc-raised-button.mat-primary {
+
+  background-color: #0b2341 !important;
+
+  color: white !important;
+}
+
+// AGREGADO: mensaje de error del backend (credenciales incorrectas, etc.)
+.login-error {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: .75rem 1rem;
+
+  background: #fdecea;
+
+  border-left: 4px solid #d32f2f;
+
+  border-radius: 8px;
+
+  color: #d32f2f;
+
+  font-size: .85rem;
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
