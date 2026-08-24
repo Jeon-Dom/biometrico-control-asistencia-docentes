@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { Router } from '@angular/router';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,6 +13,8 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
+
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -31,53 +32,48 @@ import {
 })
 export class Login {
 
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private authService = inject(AuthService);
+
   hidePassword = true;
-
   loginForm: FormGroup;
+  errorMessage = '';
+  loading = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router
-  ) {
-
+  constructor() {
     this.loginForm = this.fb.group({
-
-      correo: [
-        '',
-        [
-          Validators.required,
-          Validators.email
-        ]
-      ],
-
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(8)
-        ]
-      ]
-
+      correo: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
-
   }
 
   onSubmit(): void {
-
     if (this.loginForm.invalid) {
-
       this.loginForm.markAllAsTouched();
-
       return;
-
     }
 
-    console.log('Formulario válido');
+    this.loading = true;
+    this.errorMessage = '';
 
-    console.log(this.loginForm.value);
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (response) => {
+        this.loading = false;
+        this.authService.guardarSesion(response);
 
-    this.router.navigate(['/dashboard']);
-
+        // ⚠️ CAMBIAR AQUÍ - confirmar con Guerrero los nombres reales de sus rutas.
+        // Ahora mismo asume: /admin/dashboard y /docente/panel
+        if (response.rol === 'admin') {
+          this.router.navigate(['/admin/dashboard']);
+        } else {
+          this.router.navigate(['/docente/panel']);
+        }
+      },
+      error: (err) => {
+        this.loading = false;
+        this.errorMessage = 'Correo o contraseña incorrectos.';
+      }
+    });
   }
-
 }
