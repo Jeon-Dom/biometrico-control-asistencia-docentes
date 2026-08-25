@@ -7,6 +7,12 @@ class DocenteBase(BaseModel):
     ccuv: str = Field(..., description="Identificador único del docente (Id del Empleado)")
     nombres: str = Field(..., description="Nombres completos del docente")
     apellidos: str = Field(..., description="Apellidos completos del docente")
+    cedula: Optional[str] = Field(None, description="Cédula del docente")
+    correo: Optional[str] = Field(None, description="Correo electrónico del docente")
+    tipo_jornada: Optional[str] = Field(
+        None,
+        description="Tipo de jornada: TC (Tiempo Completo) o MT (Medio Tiempo)"
+    )
 
 
 class DocenteCreate(DocenteBase):
@@ -14,9 +20,30 @@ class DocenteCreate(DocenteBase):
 
 
 class DocenteUpdate(BaseModel):
-    ccuv: Optional[str] = Field(None, description="Identificador único del docente (Id del Empleado)")
-    nombres: Optional[str] = Field(None, description="Nombres completos del docente")
-    apellidos: Optional[str] = Field(None, description="Apellidos completos del docente")
+    ccuv: Optional[str] = Field(
+        None,
+        description="Identificador único del docente (Id del Empleado)"
+    )
+    nombres: Optional[str] = Field(
+        None,
+        description="Nombres completos del docente"
+    )
+    apellidos: Optional[str] = Field(
+        None,
+        description="Apellidos completos del docente"
+    )
+    cedula: Optional[str] = Field(
+        None,
+        description="Cédula del docente"
+    )
+    correo: Optional[str] = Field(
+        None,
+        description="Correo electrónico del docente"
+    )
+    tipo_jornada: Optional[str] = Field(
+        None,
+        description="Tipo de jornada: TC (Tiempo Completo) o MT (Medio Tiempo)"
+    )
 
 
 class DocenteResponse(DocenteBase):

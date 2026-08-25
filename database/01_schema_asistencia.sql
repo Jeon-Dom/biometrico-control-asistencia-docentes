@@ -5,6 +5,9 @@ CREATE TABLE docentes (
     ccuv VARCHAR(50) UNIQUE NOT NULL, -- Identificador clave que vincula con el sistema biométrico (Id del Empleado)
     nombres VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
+    cedula VARCHAR(20),
+    correo VARCHAR(150),
+    tipo_jornada VARCHAR(2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

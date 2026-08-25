@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import asc, desc
 
 from app.models.marcacion import Marcacion
+from app.models.docente import Docente
 
 
 def consultar_asistencia(
@@ -13,9 +14,13 @@ def consultar_asistencia(
     fecha_desde: Optional[date] = None,
     fecha_hasta: Optional[date] = None,
     tipo_marcacion: Optional[str] = None,
+    tipo_jornada: Optional[str] = None,
     orden: str = "desc",
 ):
-    query = db.query(Marcacion)
+    query = db.query(Marcacion).join(
+        Docente,
+        Marcacion.ccuv == Docente.ccuv
+    )
 
     if ccuv:
         query = query.filter(Marcacion.ccuv == ccuv)
@@ -29,6 +34,11 @@ def consultar_asistencia(
     if tipo_marcacion:
         query = query.filter(
             Marcacion.tipo_marcacion == tipo_marcacion
+        )
+
+    if tipo_jornada:
+        query = query.filter(
+            Docente.tipo_jornada == tipo_jornada
         )
 
     if orden.lower() == "asc":
