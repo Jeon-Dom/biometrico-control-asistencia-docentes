@@ -43,6 +43,10 @@ def obtener_asistencia(
         default=None,
         description="Tipo de marcación"
     ),
+    tipo_jornada: Optional[str] = Query(
+        default=None,
+        description="Tipo de jornada: TC (Tiempo Completo) o MT (Medio Tiempo)"
+    ),
     orden: str = Query(
         default="desc",
         pattern="^(asc|desc)$",
@@ -56,6 +60,7 @@ def obtener_asistencia(
         fecha_desde=fecha_desde,
         fecha_hasta=fecha_hasta,
         tipo_marcacion=tipo_marcacion,
+        tipo_jornada=tipo_jornada,
         orden=orden,
     )
 
